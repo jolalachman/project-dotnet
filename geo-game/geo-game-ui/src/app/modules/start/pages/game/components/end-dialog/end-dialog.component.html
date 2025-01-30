@@ -1,0 +1,12 @@
+<div class="end-dialog-container">
+    <div>Your score: {{gameStats.guessedCountries}} countries guessed in {{gameStats.time | timeFormat}} minutes </div>
+    @if(bestScore) {
+        <div>Your best score: {{bestScore.guessedCountries}} countries guessed in {{bestScore.gameTime | timeFormat}} minutes</div>
+    }
+    <div>Date: {{gameStats.gameDate | date:'dd.MM.yyyy'  }}</div>
+    <div>
+        <button class="dialog-button" (click)="continue()">
+            <p>Continue</p>
+        </button>
+    </div>
+</div>

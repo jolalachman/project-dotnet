@@ -1,0 +1,46 @@
+<div class="container">
+    @if(showDialog) {
+        <app-end-dialog [gameStats]="gameStats" [bestScore]="bestScore" (gameEnded)="handleGameEnded()"></app-end-dialog>
+    }
+    @if(guessedCountries$ | async; as guessedCountries) {
+        <div class="game-actions">
+            <app-timer class="timer" [startTime]="startTime" [paused]="gamePaused" (timerStopped)="onGameEnd(guessedCountries)"></app-timer>
+            @if(!gamePaused) {
+                <fa-icon size="xl" [icon]="icons.faCirclePause" (click)="pauseGame(true)"></fa-icon>
+            }
+            @else {
+                <fa-icon size="xl" [icon]="icons.faCirclePlay" (click)="pauseGame(false)"></fa-icon>
+            }
+            <fa-icon size="xl" [icon]="icons.faCircleStop" (click)="onGameEnd(guessedCountries)"></fa-icon>
+            <fa-icon size="xl" [icon]="icons.faCircleQuestion" appTooltip [text]="tooltipText">
+            </fa-icon>
+        </div>
+
+        <div class="text-input">
+            <label for="countryInput">Enter country's name: </label>
+            <div class="input-control">
+                <input [disabled]="loading || gamePaused" id="countryInput"  [(ngModel)]="countryInput" (keydown)="updateInput($event)" />
+                <p [class.visibility-hidden]="!showError" class="error">Not a correct answer</p>
+            </div>
+            <app-spinner class="spinner" [class.visibility-hidden]="!loading"></app-spinner>
+        </div>
+        <div class="map">
+            <app-map
+                [coloredCountries]="(coloredCountries$ | async) ?? []"
+                [showMissing]="showMissing">
+            </app-map>
+        </div>
+        <div class="bottom-text">
+            <div class="show-text">
+                @if(!showMissing) {
+                    <p (click)="showMissingCountries()">Show missing countries</p>
+                }
+                @else {
+                    <p (click)="hideMissingCountries()">Hide missing countries</p>
+                }
+            </div>
+            
+                <p>{{guessedCountries}}</p>
+        </div>
+    }
+</div>

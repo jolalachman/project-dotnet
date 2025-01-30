@@ -1,0 +1,23 @@
+# Ignore Visual Studio files
+.vs/
+.vscode/
+.idea/
+
+# Ignore build and IDE folders
+bin/
+obj/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt

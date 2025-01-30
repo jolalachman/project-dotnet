@@ -1,0 +1,26 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    gap: 20px;
+    .title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .play-button {
+            background-color: indianred;
+            color: 000000;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            &:hover {
+                background-color: #a44a4a;
+            }
+        }
+    }
+    .visibility-hidden {
+        visibility: hidden;
+    }
+}

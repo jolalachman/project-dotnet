@@ -1,0 +1,61 @@
+@if(user$ | async; as user) {
+    <!-- <app-confirmation-dialog></app-confirmation-dialog> -->
+    <div class="main">
+        <div class="title">
+            <h1>Welcome {{user.email}}</h1>
+            @if(user.role !== UserRoleEnum.ADMIN) {
+                <fa-icon size="lg" [icon]="faTrash" appTooltip [text]="'Delete account'" (click)="deleteAccount()">
+                </fa-icon>
+            }
+        </div>
+
+        <div class="info">
+            <h3>Your role:</h3>
+            <p>{{user.role}}</p>
+        </div>
+
+        <div class="scores-container">
+            <h3>Your scores:</h3>
+            <div class="scores-container-inner">
+                <div class="table">
+                    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="handleSort($event)" class="mat-elevation-z8">
+                        <ng-container matColumnDef="gameDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                            <td mat-cell *matCellDef="let element"> {{ mapDate(element.gameDate) | date:'dd.MM.yyyy'}} </td>
+                        </ng-container>
+                    
+                        <ng-container matColumnDef="gameTime">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Time </th>
+                            <td mat-cell *matCellDef="let element"> {{(element.gameTime) | timeFormat }} </td>
+                        </ng-container>
+                    
+                        <ng-container matColumnDef="guessedCountries">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Guessed countries </th>
+                            <td mat-cell *matCellDef="let element"> {{element.guessedCountries}} </td>
+                        </ng-container>
+                    
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>        
+                    <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageIndex]="pageIndex" (page)="handlePageEvent($event)">
+                    </mat-paginator>
+                </div>
+                <!-- <div class="scores-stats">
+                    <div class="info">
+                        <h4>Games played:</h4>
+                        <p></p>
+                    </div>
+                    <div class="info">
+                        <h4>Average score:</h4>
+                        <p></p>
+                    </div>
+                    <div class="info">
+                        <h4>Your progress chart:</h4>
+                        <p></p>
+                    </div>
+                </div> -->
+            </div>
+            <button class="delete-button" (click)="deleteScoreHistory()">Delete your score history</button>
+        </div>
+    </div>
+}

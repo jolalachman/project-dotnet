@@ -1,0 +1,27 @@
+<div class="navbar">
+    <div class="navbar-brand" (click)="goTo('')">
+      <h1>Geo game</h1>
+    </div>
+    <nav class="navbar-links">
+        @if(role$ | async; as role) {
+            <div *ngIf="role === UserRoleEnum.ADMIN">
+                <a class="account" (click)="goTo('/account')">My account</a>
+                <!-- <a class="logout" href="#">Activity log</a> 
+                <a class="logout" href="#">Users</a>  -->
+                <a class="logout" (click)="logout()">Log out</a> 
+            </div>
+        
+            <div *ngIf="role === UserRoleEnum.USER">
+                <span class="account" (click)="goTo('/account')">My account</span>
+                <span class="logout" (click)="logout()">Log out</span> 
+            </div>
+        
+        }
+        @else {
+            <asl-google-signin-button  text="continue_with" shape="pill" type='standard' size='medium' locale="en">
+            </asl-google-signin-button>
+        }
+      
+
+    </nav>
+</div>

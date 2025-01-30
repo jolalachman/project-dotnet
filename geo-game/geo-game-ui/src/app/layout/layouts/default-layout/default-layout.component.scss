@@ -1,0 +1,29 @@
+:host {
+  overflow: hidden;
+  .header {
+    position: relative;
+    z-index: 3;
+  }
+
+  .default-layout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 'sidebar main';
+
+    .default-layout-outer {
+        position: relative;
+        overflow: auto;
+        grid-area: main;
+        background: #fff;
+        height: calc(100dvh - 100px);
+        padding: 20px;
+      }
+      .default-layout-inner {
+        background-color: #d1c1c6;
+        height: calc(100% - 40px);
+        padding: 20px;
+        border-radius: 22px;
+        overflow: auto;
+      }
+  }
+}

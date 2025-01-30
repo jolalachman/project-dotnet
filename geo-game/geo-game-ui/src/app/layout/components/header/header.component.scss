@@ -1,0 +1,44 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #8b9e84;
+    color: black;
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+  
+    .navbar-brand h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-left: 30px;
+      cursor: pointer;
+    }
+  
+    .navbar-links {
+      display: flex;
+      align-items: center;
+  
+      .account {
+        font-size: 1rem;
+        color: rgba(0, 0, 0, 0.6);
+        margin-right: 1.5rem;
+        cursor: pointer;
+      }
+  
+      .logout {
+        font-size: 1rem;
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+        margin-right: 1.5rem;
+        cursor: pointer;
+  
+        &:hover {
+          color: #2a2a2a;
+        }
+      }     
+    }
+  }
+  
